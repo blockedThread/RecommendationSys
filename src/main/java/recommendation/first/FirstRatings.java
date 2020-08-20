@@ -36,7 +36,7 @@ public class FirstRatings {
 
 	public void testLoadMovies() {
 		ArrayList<Movie> movies = loadMovies(
-				"C:\\Users\\himan\\eclipse-workspace\\recommendation\\src\\main\\resources\\data\\ratedmoviesfull.csv");
+				"C:\\Users\\himan\\eclipse-workspace\\RecommendationSys\\src\\main\\resources\\data\\ratedmovies_short.csv");
 
         System.out.println("Movies: " + movies.size());
 //        for(Movie movie : movies) {
@@ -109,7 +109,7 @@ public class FirstRatings {
 
 	public void testLoadRaters() {
 		ArrayList<Rater> raters = loadRaters(
-				"C:\\Users\\himan\\eclipse-workspace\\recommendation\\src\\main\\resources\\data\\ratings.csv");
+				"C:\\Users\\himan\\eclipse-workspace\\RecommendationSys\\src\\main\\resources\\data\\ratings_short.csv");
 
 		System.out.println("Raters: " + raters.size());
 
@@ -145,7 +145,7 @@ public class FirstRatings {
 
 	public void testLoadRaters(String id) {
 		ArrayList<Rater> raters = loadRaters(
-				"C:\\Users\\himan\\eclipse-workspace\\recommendation\\src\\main\\resources\\data\\ratings.csv");
+				"C:\\Users\\himan\\eclipse-workspace\\RecommendationSys\\src\\main\\resources\\data\\ratings_short.csv");
 
 		int ratings = 0;
 		for (Rater rater : raters) {
@@ -161,7 +161,7 @@ public class FirstRatings {
 	
 	public void numRatingMovie(String movieId) {
 		ArrayList<Rater> raters = loadRaters(
-				"C:\\Users\\himan\\eclipse-workspace\\recommendation\\src\\main\\resources\\data\\ratings.csv");
+				"C:\\Users\\himan\\eclipse-workspace\\RecommendationSys\\src\\main\\resources\\data\\ratings_short.csv");
 		int ratings = 0;
 		
 		for(Rater rater : raters) {
