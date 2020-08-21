@@ -14,6 +14,8 @@ import java.util.HashSet;
 
 import com.opencsv.CSVReader;
 
+import recommendation.second.EfficientRater;
+
 public class FirstRatings {
 
 	public ArrayList<Movie> loadMovies(String filename) {
@@ -81,21 +83,21 @@ public class FirstRatings {
 		System.out.println();
 	}
 
-	public ArrayList<Rater> loadRaters(String filename) {
-		ArrayList<Rater> raters = new ArrayList<Rater>();
+	public ArrayList<EfficientRater> loadRaters(String filename) {
+		ArrayList<EfficientRater> raters = new ArrayList<>();
 
 		// Created a map to store rater corresponding to it's id and appended its
 		// ratings.
-		HashMap<String, Rater> ratersMap = new HashMap<>();
+		HashMap<String, EfficientRater> ratersMap = new HashMap<>();
 
 		CSVReader reader = null;
 		try {
 			reader = new CSVReader(new FileReader(filename), ',', '\"', 1);
 			String[] line;
 			while ((line = reader.readNext()) != null) {
-				Rater rater = ratersMap.get(line[0]);
+				EfficientRater rater = ratersMap.get(line[0]);
 				if (rater == null)
-					ratersMap.put(line[0], new Rater(line[0]));
+					ratersMap.put(line[0], new EfficientRater(line[0]));
 				ratersMap.get(line[0]).addRating(line[1], Double.parseDouble(line[2]));
 			}
 		} catch (IOException e) {
@@ -108,7 +110,7 @@ public class FirstRatings {
 	}
 
 	public void testLoadRaters() {
-		ArrayList<Rater> raters = loadRaters(
+		ArrayList<EfficientRater> raters = loadRaters(
 				"C:\\Users\\himan\\eclipse-workspace\\RecommendationSys\\src\\main\\resources\\data\\ratings_short.csv");
 
 		System.out.println("Raters: " + raters.size());
@@ -123,12 +125,12 @@ public class FirstRatings {
 //         }
 
 		int maxRatings = 0;
-		for (Rater rater : raters) {
+		for (EfficientRater rater : raters) {
 			maxRatings = Math.max(maxRatings, rater.numRatings());
 		}
 		System.out.println("Max rating: " + maxRatings);
 		
-		for (Rater rater : raters) {
+		for (EfficientRater rater : raters) {
 			if (rater.numRatings() == maxRatings) {
 				System.out.println("Max rater " + rater.getID());
 			}
@@ -137,18 +139,18 @@ public class FirstRatings {
 		
 		HashSet<String> movies = new HashSet<>();
 		
-		for(Rater rater : raters) {
+		for(EfficientRater rater : raters) {
 			movies.addAll(rater.getItemsRated());
 		}
 		System.out.println("Different movies rated: " + movies.size());
 	}
 
 	public void testLoadRaters(String id) {
-		ArrayList<Rater> raters = loadRaters(
+		ArrayList<EfficientRater> raters = loadRaters(
 				"C:\\Users\\himan\\eclipse-workspace\\RecommendationSys\\src\\main\\resources\\data\\ratings_short.csv");
 
 		int ratings = 0;
-		for (Rater rater : raters) {
+		for (EfficientRater rater : raters) {
 			if (rater.getID().equals(id)) {
 				ratings = rater.numRatings();
 				break;
@@ -160,11 +162,11 @@ public class FirstRatings {
 	}
 	
 	public void numRatingMovie(String movieId) {
-		ArrayList<Rater> raters = loadRaters(
+		ArrayList<EfficientRater> raters = loadRaters(
 				"C:\\Users\\himan\\eclipse-workspace\\RecommendationSys\\src\\main\\resources\\data\\ratings_short.csv");
 		int ratings = 0;
 		
-		for(Rater rater : raters) {
+		for(EfficientRater rater : raters) {
 			for(String movie : rater.getItemsRated()) {
 				if(movieId.contentEquals(movie)) 
 					ratings++;

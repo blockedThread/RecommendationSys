@@ -10,11 +10,13 @@ package recommendation.first;
 
 import java.util.ArrayList;
 
-public class Rater {
+import recommendation.third.Rater;
+
+public class PlainRater implements Rater{
     private String myID;
     private ArrayList<Rating> myRatings;
 
-    public Rater(String id) {
+    public PlainRater(String id) {
         myID = id;
         myRatings = new ArrayList<Rating>();
     }
